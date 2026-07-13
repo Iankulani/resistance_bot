@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  resistance-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resistance-bot
+    restart: unless-stopped
+    ports:
+      - "5000:5000"  # Web Dashboard
+      - "5555:5555"  # Agent C2
+      - "8080:8080"  # Domain Hosting
+      - "4444:4444"  # Payload Callback
+    volumes:
+      - ./data:/app/.resistance_bot
+      - ./reports:/app/resistance_reports
+      - ./payloads:/app/payloads
+      - ./logs:/app/logs
+    environment:
+      - TZ=UTC
+      - PYTHONUNBUFFERED=1
+      - RESISTANCE_ENV=docker
+    env_file:
+      - .env
+    networks:
+      - resistance-network
+    security_opt:
+      - no-new-privileges:true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+  redis:
+    image: redis:7-alpine
+    container_name: resistance-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+    networks:
+      - resistance-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: resistance-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: resistance
+      POSTGRES_PASSWORD: resistance_secure_pass
+      POSTGRES_DB: resistance_bot
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - resistance-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: resistance-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - resistance-bot
+    networks:
+      - resistance-network
+
+networks:
+  resistance-network:
+    driver: bridge
+    name: resistance-network

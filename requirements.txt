@@ -1,0 +1,83 @@
+# Core Dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+colorama>=0.4.6
+click>=8.1.7
+
+# Network & Security
+paramiko>=3.4.0
+scapy>=2.5.0
+python-nmap>=0.7.1
+dnspython>=2.4.2
+whois>=0.9.3
+pyshorteners>=1.0.1
+
+# Database
+sqlite3
+
+# Discord
+discord.py>=2.3.0
+
+# Telegram
+telethon>=1.34.0
+
+# Slack
+slack-sdk>=3.21.3
+slack-bolt>=1.18.0
+
+# WhatsApp
+selenium>=4.15.0
+webdriver-manager>=4.0.1
+
+# Google Chat
+google-api-python-client>=2.108.0
+google-auth-httplib2>=0.1.0
+google-auth-oauthlib>=1.1.0
+
+# Web Framework
+Flask>=3.0.0
+Flask-SocketIO>=5.3.4
+Flask-CORS>=4.0.0
+python-socketio>=5.9.0
+
+# Cryptography
+cryptography>=41.0.0
+pycryptodome>=3.19.0
+
+# Keylogger
+pynput>=1.7.6
+pyautogui>=0.9.54
+pyperclip>=1.8.2
+
+# Document Generation
+python-docx>=1.1.0
+reportlab>=4.0.4
+
+# Data Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+numpy>=1.24.0
+
+# QR Code
+qrcode>=7.4.2
+Pillow>=10.1.0
+
+# Email
+email-validator>=2.1.0
+secure-smtplib>=0.1.1
+
+# Utilities
+psutil>=5.9.5
+pyinstaller>=6.2.0
+watchdog>=3.0.0
+filelock>=3.12.0
+
+# Logging
+loguru>=0.7.2
+
+# Development
+black>=23.11.0
+pytest>=7.4.3
+pytest-cov>=4.1.0
+flake8>=6.1.0
+mypy>=1.7.0
