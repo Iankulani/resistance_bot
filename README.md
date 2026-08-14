@@ -21,5 +21,9 @@ cd resistance_bot
 python resistance_bot.py
 ```
 
+# References:
+```bash
+```
+
 # Star History
 
