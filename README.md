@@ -27,3 +27,4 @@ python resistance_bot.py
 
 # Star History
 
+[![Star History Chart](https://api.star-history.com/svg?repos=Iankulani/resistance_bot&type=Date)](https://star-history.com/#Iankulani/resistance_bot&Date)
